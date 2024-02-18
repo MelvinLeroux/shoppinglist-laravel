@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GroceryController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +16,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// * GROCERY* //
+Route::get('/groceries', [GroceryController::class, 'list']);
+Route::get('/groceries/{id}', [GroceryController::class, 'read'])->where("id", "[0-9]+");
+Route::post('/groceries', [GroceryController::class, 'create']);
+Route::delete('/groceries/{id}', [GroceryController::class, 'delete'])->where("id", "[0-9]+");
+Route::patch('/groceries/{id}', [GroceryController::class, 'update'])->where("id", "[0-9]+");
+// * CATEGORIES* //
+Route::get('/categories', [CategoryController::class, 'list']);
+Route::get('/categories/{id}', [CategoryController::class, 'read'])->where("id", "[0-9]+");
+
