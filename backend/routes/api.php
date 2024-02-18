@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GroceryController;
 use App\Http\Controllers\CategoryController;
+use App\Models\Category;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +26,6 @@ Route::patch('/groceries/{id}', [GroceryController::class, 'update'])->where("id
 // * CATEGORIES* //
 Route::get('/categories', [CategoryController::class, 'list']);
 Route::get('/categories/{id}', [CategoryController::class, 'read'])->where("id", "[0-9]+");
-
+Route::post('/categories', [CategoryController::class, 'create']);
+Route::delete('/categories/{id}', [CategoryController::class, 'delete'])->where("id", "[0-9]+");
+Route::patch('/categories/{id}', [CategoryController::class, 'update'])->where("id", "[0-9]+");
