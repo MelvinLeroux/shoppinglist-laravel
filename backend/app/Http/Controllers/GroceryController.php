@@ -28,22 +28,69 @@ class GroceryController extends Controller
     public function create(Request $request)
     {
         /**
-        * This method create a Grocery
+        * This method creates a Grocery
         */
-        // On utilise le validator pour venir vérifier la conformité des champs dans la requête
+        // Validator to check if the request is ok
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:100',
+            'category' => 'max:100',
         ]);
-        // si un champ ou plusieurs champs "foirent" on renvoi un json avec un code 422
+        // if one of the field is not okay return fail
+        if ($validator->fails()) {
+            return response()->json([
+                "error" => $validator->errors()
+            ], 422);
+        }
+        $grocery = new Grocery();
+        $grocery->name = $request->name;
+        $grocery->save();
+        return response()->json(["data"=>$grocery],201);
+    }
+
+    public function delete(int $id)
+    {
+        /**
+        * This method deletes a grocery
+        */
+        // Get the grocery
+        $groceryToDelete = Grocery::find($id);
+
+        // if grocery does not exist
+        if (!$$groceryToDelete) {
+            return response()->json([
+                "error" => "task not found"
+            ], 404);
+        }
+        // if exist delete + 204
+        $groceryToDelete->delete();
+        // return the response
+        return response(null, 204);
+    }
+
+    public function update(int $id, Request $request)
+    {
+        /**
+         * This method update a GRocery
+        */
+        $grocerytoUpdate = Grocery::find($id);
+        // validator to check the field
+        $validator = Validator::make($request->all(), [
+            "name" => 'min:1|max:100',
+            "category" => 'max:100'
+        ]);
+        // if grocery does not exist
         if ($validator->fails()) {
             return response()->json([
                 // errors est une méthode du validator qui retourne les erreurs au format champ => [errors]
                 "error" => $validator->errors()
             ], 422);
         }
-        $Grocery = new Grocery();
-        $Grocery->name = $request->name;
-        $Grocery->save();
-        return response()->json(["data"=>$Grocery],201);
+        // if exist update
+        $grocerytoUpdate->fill($request->all());
+        $grocerytoUpdate->save();
+
+        return response()->json([
+            "data" => $grocerytoUpdate
+        ], 200);
     }
 }

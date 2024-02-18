@@ -17,11 +17,11 @@ use App\Http\Controllers\CategoryController;
 */
 
 // * GROCERY* //
-Route::get('/grocery', [GroceryController::class, 'list']);
-Route::get('/grocery/{id}', [GroceryController::class, 'read'])->where("id", "[0-9]+");
-Route::post('/grocery', [GroceryController::class, 'create']);
-Route::delete('/grocery/{id}', [GroceryController::class, 'delete'])->where("id", "[0-9]+");
-Route::patch('/grocery/{id}', [GroceryController::class, 'update'])->where("id", "[0-9]+");
+Route::get('/groceries', [GroceryController::class, 'list']);
+Route::get('/groceries/{id}', [GroceryController::class, 'read'])->where("id", "[0-9]+");
+Route::post('/groceries', [GroceryController::class, 'create']);
+Route::delete('/groceries/{id}', [GroceryController::class, 'delete'])->where("id", "[0-9]+");
+Route::patch('/groceries/{id}', [GroceryController::class, 'update'])->where("id", "[0-9]+");
 // * CATEGORIES* //
 Route::get('/categories', [CategoryController::class, 'list']);
 Route::get('/categories/{id}', [CategoryController::class, 'read'])->where("id", "[0-9]+");
