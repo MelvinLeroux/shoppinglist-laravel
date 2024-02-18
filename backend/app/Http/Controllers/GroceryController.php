@@ -56,7 +56,7 @@ class GroceryController extends Controller
         $groceryToDelete = Grocery::find($id);
 
         // if grocery does not exist
-        if (!$$groceryToDelete) {
+        if (!$groceryToDelete) {
             return response()->json([
                 "error" => "task not found"
             ], 404);

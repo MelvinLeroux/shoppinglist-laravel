@@ -15,6 +15,26 @@ class CategoryController extends Controller
     return response()->json(Category::all());
     }
 
+    public function create(Request $request)
+    {
+        /**
+        * This method creates a Category
+        */
+        // Validator to check if the request is ok
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|max:100',
+        ]);
+        // if one of the field is not okay return fail
+        if ($validator->fails()) {
+            return response()->json([
+                "error" => $validator->errors()
+            ], 422);
+        }
+        $category = new Category();
+        $category->name = $request->name;
+        $category->save();
+        return response()->json(["data"=>$category],201);
+    }
     public function read (int $id)
     /**
      * This method display a categroy asked with an id
@@ -51,7 +71,6 @@ class CategoryController extends Controller
         // validator to check the field
         $validator = Validator::make($request->all(), [
             "name" => 'min:1|max:100',
-            "category" => 'max:100'
         ]);
         // if category does not exist
         if ($validator->fails()) {
