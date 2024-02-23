@@ -31,28 +31,29 @@ const grocery = {
     createGroceryElement: function (grocery) {
         // * Je crée tous mes éléments
         const liElement = document.createElement("li");
-        const pElement = document.createElement("p");
+        const listElement = document.createElement("p");
         const deleteElement = document.createElement("div");
         const editElement = document.createElement("div");
-        const emElement = document.createElement("em");
+        const categoryElement = document.createElement("p");
 
         //* toutes mes modifs sur les éléments
         liElement.dataset.id = grocery.id;
-        pElement.textContent = grocery.name;
+        listElement.textContent = grocery.name;
+        listElement.classList.add("list-item");
+        categoryElement.classList.add("list-category");
         deleteElement.classList.add("delete");
         editElement.classList.add("edit");
-        // ! A partir du moment ou quelque chose est nullable en bdd, il faut faire un affichage conditionnel dessus
-        if (grocery.category) {
-            emElement.textContent = grocery.category.name;
-            console.log(grocery.category.name);
-            liElement.prepend(emElement);
-        }
 
         //-1 mettre un event sur le bouton delete
-        deleteElement.addEventListener("click", (event) => this.handleClickDelete(event, grocery.id));
 
         // * raccrocher chaque sous éléments de la li à la li
-        liElement.prepend(pElement, editElement, deleteElement);
+        liElement.prepend(listElement, editElement, deleteElement);
+        // ! A partir du moment ou quelque chose est nullable en bdd, il faut faire un affichage conditionnel dessus
+        if (grocery.category) {
+            categoryElement.textContent = grocery.category.name;
+            liElement.prepend(categoryElement);
+        }
+        deleteElement.addEventListener("click", (event) => this.handleClickDelete(event, grocery.id));
 
         // je return ma li toute prête à partir dans le dom
         return liElement;

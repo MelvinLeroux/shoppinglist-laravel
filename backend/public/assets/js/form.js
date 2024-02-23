@@ -57,6 +57,8 @@ const form = {
         grocery.header.classList.toggle("muted");
         // permet de changer la valeur de hidden par son contraire (si true false si false true)
         grocery.groceryContainerElement.hidden = !grocery.groceryContainerElement.hidden;
+        category.categoryContainerElement.hidden = ! category.categoryContainerElement.hidden;
+
         this.createGroceryContainerElement.hidden = !this.createGroceryContainerElement.hidden;
         this.createCategoryContainerElement.hidden = !this.createCategoryContainerElement.hidden;
     },
@@ -65,6 +67,8 @@ const form = {
         grocery.header.classList.toggle("muted");
         // permet de changer la valeur de hidden par son contraire (si true false si false true)
         grocery.groceryContainerElement.hidden = !grocery.groceryContainerElement.hidden;
+        category.categoryContainerElement.hidden = ! category.categoryContainerElement.hidden;
+
         this.createGroceryContainerElement.hidden = !this.createGroceryContainerElement.hidden;
         this.createCategoryContainerElement.hidden = !this.createCategoryContainerElement.hidden;
     },
@@ -90,25 +94,23 @@ const form = {
         event.preventDefault();
         //  5 Récupérer la valeur de l'input
         const name = this.inputcreateGroceryTitleElement.value;
-        const category = this.selectCategoryElement.option;
+        const category_id= this.selectCategoryElement.value;
         //  6 transformer en json la valeur récupéré
-        const jsonData = JSON.stringify({ name, category });
-        console.log(jsonData);
-
+        const jsonData = JSON.stringify({ name, category_id });
         //  7 envoyer au serveur la donnée
         //  7.1 trycatch sur await pour capter les erreurs
         try {
             const groceryData = await serveur.createGrocery(jsonData);
             //  8 changer le dom avec la nouvelle grocery
+
             const liElement = grocery.createGroceryElement(groceryData.data);
-            console.log(liElement);
             grocery.groceryContainerElement.append(liElement);
             //  9 revenir à la page de base
             this.handleClickCreateGroceryVisibility();
             //  10 réinitialiser l'input
             this.inputcreateGroceryTitleElement.value = "";
         } catch (error) {
-            alert(error.message);
+            alert("handlegrocery",error.message);
         }
     },
     handleGroceryUpdateSubmit: async function (event) {
@@ -124,7 +126,6 @@ const form = {
             const groceryData = await serveur.createGrocery(jsonData);
             //  8 changer le dom avec la nouvelle grocery
             const liElement = grocery.createGroceryElement(groceryData.data);
-            console.log(liElement);
             grocery.groceryContainerElement.append(liElement);
             //  9 revenir à la page de base
             this.handleClickCreateGroceryVisibility();
@@ -149,27 +150,27 @@ const form = {
             const categoryData = await serveur.createCategory(jsonData);
             //  8 changer le dom avec la nouvelle grocery
             const liElement = category.createCategoryElement(categoryData.data);
-            console.log(liElement);
-            this.categoryContainerElement.append(liElement);
+            this.createCategoryContainerElement.append(liElement);
             //  9 revenir à la page de base
             this.handleClickCreateCategoryVisibility();
             //  10 réinitialiser l'input
-            this.inputcreateCategoryTitleElement.value = "";
         } catch (error) {
             alert(error.message);
         }
     },
     loadCategories: async function () {
         try {
+
             // je récupère les catégories en bdd
             const categories = await serveur.getCategories();
             //  boucler sur les categories
-            for (const category of categories) {
+            for (const categoryItem of categories) {
                 //  créer l'option de la category
                 const option = document.createElement("option");
-                option.value = category.id;
-                option.textContent = category.name;
+                option.value = categoryItem.id;
+                option.textContent = categoryItem.name;
                 this.selectCategoryElement.append(option);
+
             }
         } catch (error) {
             throw new Error(error.message);

@@ -32,26 +32,24 @@ const category = {
         const liElement = document.createElement("li");
         const pElement = document.createElement("p");
         const deleteElement = document.createElement("div");
-        const emElement = document.createElement("em");
+        pElement.classList.add("list-item");
+
         //* toutes mes modifs sur les éléments
         liElement.dataset.id = category.id;
         pElement.textContent = category.name;
         deleteElement.classList.add("delete");
-        // ! A partir du moment ou quelque chose est nullable en bdd, il faut faire un affichage conditionnel dessus
-        if (category.category) {
-            emElement.textContent = category.category.name;
-            liElement.prepend(emElement);
-        }
+
 
         //-1 mettre un event sur le bouton delete
         deleteElement.addEventListener("click", (event) => this.handleClickDelete(event, category.id));
 
         // * raccrocher chaque sous éléments de la li à la li
         liElement.prepend(pElement, deleteElement);
-
         // je return ma li toute prête à partir dans le dom
         return liElement;
     },
+
+
     // 3 la fonction qui va se déclencher au click sur la corbeille
     handleClickDelete: async function (event, id) {
         try {

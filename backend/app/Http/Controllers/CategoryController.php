@@ -51,7 +51,7 @@ class CategoryController extends Controller
         $categoryToDelete = Category::find($id);
 
         // if category does not exist
-        if (!$$categoryToDelete) {
+        if (!$categoryToDelete) {
             return response()->json([
                 "error" => "task not found"
             ], 404);

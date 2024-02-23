@@ -155,62 +155,74 @@ button:active {
 /**
  * Grocery list
  */
-.grocerylist {
+.grocerylist, .categoryList {
   list-style: none;
   padding-left: 0;
+
+  li {
+    display: flex;
+  }
 }
+
 @media (max-width: 767.98px) {
-  .grocerylist {
+  .grocerylist, .categoryList {
     margin-top: 3rem;
     padding-bottom: 6.25rem;
   }
 }
 @media (min-width: 768px) {
-  .grocerylist {
+  .grocerylist, .categoryList {
     margin-left: auto;
     margin-right: auto;
     max-width: 43.75rem;
     padding-bottom: 8.125rem;
+
+    li {
+      margin-bottom: 1.5rem;
+      border: 0.125rem solid var(--color-border-subtle);
+      border-radius: 0.375rem;
+
+      .delete, .edit {
+          background-repeat: no-repeat;
+          background-position: center center;
+          cursor: pointer;
+          width: 3.125rem;
+          border-left: 0.125rem solid var(--color-border-subtle);
+          opacity: 0.5;
+        }
+      .delete:hover, .edit:hover {
+          opacity: 1;
+        }
+      .delete:active, .edit:active {
+          transform: translateY(0.125rem);
+        }
+      .delete {
+          background-image: url(../img/delete.png);
+        }
+      .edit {
+          background-image: url(../img/edit.png);
+      }
+    }
+
+    li:nth-of-type(odd) {
+        background-color: var(--color-neutral-subtle);
+    }
+
+    .list-item {
+        flex: 1;
+        padding: 1rem;
+        font-size: 1.25rem;
+    }
+
+    .list-category{
+        align-self: center;
+        margin-left: 1rem;
+    }
   }
-}
-.grocerylist li {
-  display: flex;
 }
 @media (min-width: 768px) {
-  .grocerylist li {
-    margin-bottom: 1.5rem;
-    border: 0.125rem solid var(--color-border-subtle);
-    border-radius: 0.375rem;
-  }
 }
-.grocerylist li:nth-of-type(odd) {
-  background-color: var(--color-neutral-subtle);
-}
-.grocerylist li p {
-  flex: 1;
-  padding: 1rem;
-  font-size: 1.25rem;
-}
-.grocerylist li .delete, .grocerylist li .edit {
-  background-repeat: no-repeat;
-  background-position: center center;
-  cursor: pointer;
-  width: 3.125rem;
-  border-left: 0.125rem solid var(--color-border-subtle);
-  opacity: 0.5;
-}
-.grocerylist li .delete:hover, .grocerylist li .edit:hover {
-  opacity: 1;
-}
-.grocerylist li .delete:active, .grocerylist li .edit:active {
-  transform: translateY(0.125rem);
-}
-.grocerylist li .delete {
-  background-image: url(../img/delete.png);
-}
-.grocerylist li .edit {
-  background-image: url(../img/edit.png);
-}
+
 
 /**
  * Create grocery container
