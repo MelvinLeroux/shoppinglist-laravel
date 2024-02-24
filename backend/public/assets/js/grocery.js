@@ -38,7 +38,7 @@ const grocery = {
         const categoryElement = document.createElement("p");
 
         //* toutes mes modifs sur les éléments
-        liElement.dataset.id = grocery.id;
+        liElement.dataset.groceryId = grocery.id;
         listElement.textContent = grocery.name;
         listElement.classList.add("list-item");
         categoryElement.classList.add("list-category");

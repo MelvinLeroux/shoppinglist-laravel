@@ -132,6 +132,9 @@ const form = {
             const groceryData = await serveur.updateGrocery(this.editGroceryId,jsonData);
             //  8 changer le dom avec la nouvelle grocery
             //  9 revenir à la page de base
+            const groceryListItem = document.querySelector('li[data-grocery-id="' + this.editGroceryId + '"');
+            const groceryListItemName = groceryListItem.querySelector(".list-item");
+            groceryListItemName.innerHTML = groceryData.data.name;
             this.handleClickUpdateGroceryVisibility();
             //  10 réinitialiser l'input
             this.inputupdateGroceryTitleElement.value = "";
@@ -150,7 +153,6 @@ const form = {
 
         }
     },
-
 
     handleCategoryCreateSubmit: async function (event) {
         // ! 4 IMPORTANT, empêcher l'envoi du form

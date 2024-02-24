@@ -54,8 +54,9 @@ const serveur = {
                 throw new Error(`Fetch failed : ${response.status}`);
             }
             // ! si erreur à partir d'ici on execute plus et on va dans le catch
+            const grocery = await response.json();
             // * données utilisable car on a bien "parsé les données en json"
-            return response;
+            return grocery;
         } catch (error) {
             // * ici c'est le cas ou le fetch à "foiré" donc on throw une erreur pour la partie du code qui utilise cette fonction getgroceries
             throw new Error(error.message);

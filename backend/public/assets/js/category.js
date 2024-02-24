@@ -35,7 +35,7 @@ const category = {
         pElement.classList.add("list-item");
 
         //* toutes mes modifs sur les éléments
-        liElement.dataset.id = category.id;
+        liElement.dataset.categoryId = category.id;
         pElement.textContent = category.name;
         deleteElement.classList.add("delete");
 
