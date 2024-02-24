@@ -1,4 +1,5 @@
 import serveur from "./serveur.js";
+import form from "./form.js";
 const grocery = {
     init: async function () {
         // querySelector necessaire à l'app
@@ -54,7 +55,7 @@ const grocery = {
             liElement.prepend(categoryElement);
         }
         deleteElement.addEventListener("click", (event) => this.handleClickDelete(event, grocery.id));
-
+        editElement.addEventListener("click", () => form.handleClickUpdateGroceryVisibility(grocery.id))
         // je return ma li toute prête à partir dans le dom
         return liElement;
     },

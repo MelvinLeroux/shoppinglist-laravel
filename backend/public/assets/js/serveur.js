@@ -38,7 +38,7 @@ const serveur = {
             throw new Error(error.message);
         }
     },
-    updateGrocery: async function (id) {
+    updateGrocery: async function (id, data) {
         try {
             // fetch fait une requete http, vers l'url en premier argument avec la method fournis en deuxieme argument
             const response = await fetch(`${this.url}/groceries/${id}`, {

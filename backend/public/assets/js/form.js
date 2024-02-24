@@ -4,6 +4,7 @@ import category from "./category.js";
 
 const form = {
     init: async function () {
+        this.editGroceryId = null;
         //  1 récupérer les éléments du dom
         /**
          * CreateGrocery queryselectors
@@ -26,9 +27,10 @@ const form = {
         /**
          * updateGrocery queryselectors
          */
-        this.updateGrocerymodalElement = document.querySelector(".modal-dialog-grocery-update");
+        this.updateGroceryModalElement = document.querySelector(".modal-dialog-grocery-update");
         this.updateGroceryformElement = document.querySelector(".grocery-update");
         this.inputupdateGroceryTitleElement = document.querySelector("#grocery-update-title");
+
         /**
          * CreateCategory queryselectors
          */
@@ -42,10 +44,8 @@ const form = {
         this.createGroceryformElement.addEventListener("submit", (event) => this.handleGroceryCreateSubmit(event));
         this.createCategoryButtonElement.addEventListener("click", () => this.handleClickCreateCategoryVisibility());
         this.createCategoryformElement.addEventListener("submit", (event) => this.handleCategoryCreateSubmit(event));
-        // this.GroceryButtonElement.addEventListener("click", () => this.handleClickUpdateGroceryVisibility());
-        // this.GroceryformElement.addEventListener("submit", (event) => this.handleGroceryUpdateSubmit(event));
-        // this.CategoryButtonElement.addEventListener("click", () => this.handleClickUpdateCategoryVisibility());
-        // this.CategoryformElement.addEventListener("submit", (event) => this.handleCategoryUpdateSubmit(event));
+        this.updateGroceryformElement.addEventListener("submit", (event) => this.handleGroceryUpdateSubmit(event));
+
         try {
             await this.loadCategories();
         } catch (error) {
@@ -73,22 +73,16 @@ const form = {
         this.createGroceryContainerElement.hidden = !this.createGroceryContainerElement.hidden;
         this.createCategoryContainerElement.hidden = !this.createCategoryContainerElement.hidden;
     },
-    handleClickUpdateGroceryVisibility: function () {
-        this.updateGrocerymodalElement.classList.toggle("show");
+    handleClickUpdateGroceryVisibility: function (id) {
+        this.editGroceryId = id;
+        this.updateGroceryModalElement.classList.toggle("show");
         grocery.header.classList.toggle("muted");
         // permet de changer la valeur de hidden par son contraire (si true false si false true)
         grocery.groceryContainerElement.hidden = !grocery.groceryContainerElement.hidden;
-        this.updateGroceryContainerElement.hidden = !this.createGroceryContainerElement.hidden;
-        this.updateCategoryContainerElement.hidden = !this.createCategoryContainerElement.hidden;
+        category.categoryContainerElement.hidden = ! category.categoryContainerElement.hidden;
+        this.createGroceryContainerElement.hidden = !this.createGroceryContainerElement.hidden;
+        this.createCategoryContainerElement.hidden = !this.createCategoryContainerElement.hidden;
     },
-    // handleClickCreateCategoryVisibility: function () {
-    //     this.createCategorymodalElement.classList.toggle("show");
-    //     grocery.header.classList.toggle("muted");
-    //     // permet de changer la valeur de hidden par son contraire (si true false si false true)
-    //     grocery.groceryContainerElement.hidden = !grocery.groceryContainerElement.hidden;
-    //     this.createGroceryContainerElement.hidden = !this.createGroceryContainerElement.hidden;
-    //     this.createCategoryContainerElement.hidden = !this.createCategoryContainerElement.hidden;
-    // },
 
     handleGroceryCreateSubmit: async function (event) {
         // ! 4 IMPORTANT, empêcher l'envoi du form
@@ -115,7 +109,6 @@ const form = {
             setTimeout(() => {
                 this.createGroceryMessageCreated.setAttribute("hidden","");
             }, 2000);
-            console.log('aftersettimeout');
         } catch (error) {
             // alert("handlegrocery",error.message);
             this.createGroceryMessageError = document.querySelector(".message.danger.create.grocery");
@@ -130,23 +123,30 @@ const form = {
         // ! 4 IMPORTANT, empêcher l'envoi du form
         event.preventDefault();
         //  5 Récupérer la valeur de l'input
-        const name = this.inputCreateGroceryTitleElement.value;
+        const name = this.inputupdateGroceryTitleElement.value;
         //  6 transformer en json la valeur récupéré
         const jsonData = JSON.stringify({ name });
         //  7 envoyer au serveur la donnée
         //  7.1 trycatch sur await pour capter les erreurs
         try {
-            const groceryData = await serveur.createGrocery(jsonData);
+            const groceryData = await serveur.updateGrocery(this.editGroceryId,jsonData);
             //  8 changer le dom avec la nouvelle grocery
-            const liElement = grocery.createGroceryElement(groceryData.data);
-            grocery.groceryContainerElement.append(liElement);
             //  9 revenir à la page de base
-            this.handleClickCreateGroceryVisibility();
+            this.handleClickUpdateGroceryVisibility();
             //  10 réinitialiser l'input
-            this.inputCreateGroceryTitleElement.value = "";
+            this.inputupdateGroceryTitleElement.value = "";
+            this.updateSucessMessage = document.querySelector(".message.success.edit.grocery");
+            this.updateSucessMessage.removeAttribute("hidden");
+            setTimeout(() => {
+                this.updateSucessMessage.setAttribute("hidden","");
+            }, 2000);
 
         } catch (error) {
-            // alert(error.message);
+            this.updateFailedMessage = document.querySelector(".message.danger.edit.grocery");
+            this.updateFailedMessage.removeAttribute("hidden");
+            setTimeout(() => {
+                this.updateFailedMessage.setAttribute("hidden","");
+            }, 2000);
 
         }
     },

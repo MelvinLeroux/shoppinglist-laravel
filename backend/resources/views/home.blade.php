@@ -31,7 +31,12 @@
     <div class="message success create category" hidden>
       la nouvelle catégorie a été ajoutée avec succès
     </div>
-
+    <div class="message success edit grocery" hidden>
+      l'article a été modifié avec succès
+    </div>
+    <div class="message danger edit grocery" hidden>
+      l'article n'a pas pu être modifié 
+    </div>
     <div class="message success delete grocery" hidden>
       le nouvel article a été supprimé avec succès
     </div>
@@ -95,8 +100,6 @@
         <input name="id" id="grocery-update-id" type="hidden">
         <input name="name" id="grocery-update-title" placeholder="titre de l'article..." type="text" required>
         <!--  créer le select pour y ajouter les options dynamiquement -->
-        <select name="category" id="category">
-        </select>
         <button>ajouter</button>
       </form>
     </div>

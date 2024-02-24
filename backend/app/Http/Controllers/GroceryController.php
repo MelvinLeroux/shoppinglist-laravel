@@ -78,7 +78,6 @@ class GroceryController extends Controller
         // validator to check the field
         $validator = Validator::make($request->all(), [
             "name" => 'min:1|max:100',
-            "category" => 'max:100'
         ]);
         // if grocery does not exist
         if ($validator->fails()) {

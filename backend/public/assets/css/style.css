@@ -322,6 +322,9 @@ form input[type=text]:focus {
 .modal-dialog-grocery.show {
   display: flex;
 }
+.modal-dialog-grocery-update.show {
+    display: flex;
+  }
 .modal-dialog-category.show {
     display: flex;
   }
