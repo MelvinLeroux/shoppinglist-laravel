@@ -110,8 +110,20 @@ const form = {
             this.handleClickCreateGroceryVisibility();
             //  10 réinitialiser l'input
             this.inputCreateGroceryTitleElement.value = "";
+            this.createGroceryMessageCreated = document.querySelector(".message.success.create.grocery");
+            this.createGroceryMessageCreated.removeAttribute('hidden');
+            setTimeout(() => {
+                this.createGroceryMessageCreated.setAttribute("hidden","");
+            }, 2000);
+            console.log('aftersettimeout');
         } catch (error) {
-            alert("handlegrocery",error.message);
+            // alert("handlegrocery",error.message);
+            this.createGroceryMessageError = document.querySelector(".message.danger.create.grocery");
+            this.createGroceryMessageError.removeAttribute("hidden");
+
+            setTimeout(() => {
+                this.createGroceryMessageError.setAttribute("hidden", "");
+            }, 2000);
         }
     },
     handleGroceryUpdateSubmit: async function (event) {
@@ -132,8 +144,10 @@ const form = {
             this.handleClickCreateGroceryVisibility();
             //  10 réinitialiser l'input
             this.inputCreateGroceryTitleElement.value = "";
+
         } catch (error) {
-            alert(error.message);
+            // alert(error.message);
+
         }
     },
 
@@ -155,9 +169,20 @@ const form = {
             //  9 revenir à la page de base
             this.loadCategories();
             this.handleClickCreateCategoryVisibility();
+            this.createCategoryMessageCreated = document.querySelector(".message.success.create.category");
+            this.createCategoryMessageCreated.removeAttribute('hidden');
+            setTimeout(() => {
+                this.createCategoryMessageCreated.setAttribute("hidden","");
+            }, 2000);
             //  10 réinitialiser l'input
         } catch (error) {
-            alert(error.message);
+            this.createCategoryMessageError = document.querySelector(".message.danger.create.category");
+            this.createCategoryMessageError.removeAttribute("hidden");
+            setTimeout(() => {
+                this.createGroceryMessageError.setAttribute("hidden","");
+            }, 2000);
+            // alert(error.message);
+
         }
     },
     loadCategories: async function () {

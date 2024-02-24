@@ -59,9 +59,17 @@ const category = {
             await serveur.deleteCategory(id);
             // je supprime coté client
             article.remove();
+            this.deleteSuccessMessage = document.querySelector(".message.success.delete.category");
+            this.deleteSuccessMessage.removeAttribute("hidden");
+            setTimeout(() => {
+                this.deleteSuccessMessage.setAttribute("hidden","");
+            }, 2000);
         } catch (error) {
-            this.deleteFailedMessage = document.querySelector(".message.danger.category");
+            this.deleteFailedMessage = document.querySelector(".message.danger.delete.category");
             this.deleteFailedMessage.removeAttribute("hidden");
+            setTimeout(() => {
+                this.deleteFailedMessage.setAttribute("hidden","");
+            }, 2000);
         }
     },
 

@@ -25,14 +25,32 @@
       <button>nouvelle catégorie</button>
     </div>
     </div>
-    <div class="message success" hidden>
+    <div class="message success create grocery" hidden>
       le nouvel article a été ajouté avec succès
     </div>
-    <div class="message danger grocery" hidden>
+    <div class="message success create category" hidden>
+      la nouvelle catégorie a été ajoutée avec succès
+    </div>
+
+    <div class="message success delete grocery" hidden>
+      le nouvel article a été supprimé avec succès
+    </div>
+    <div class="message success delete category" hidden>
+      la nouvelle catégorie a été supprimée avec succès
+    </div>
+    <div class="message danger create grocery" hidden>
       oops, impossible d'ajouter l'article
     </div>
 
-    <div class="message danger category" hidden>
+    <div class="message danger delete grocery" hidden>
+      oops, impossible de supprimer l'article
+    </div>
+
+    <div class="message danger create category" hidden>
+      oops, impossible d'ajouter la catégorie
+    </div>
+
+    <div class="message danger delete category" hidden>
       oops, impossible de supprimer la catégorie
     </div>
 

@@ -67,8 +67,18 @@ const grocery = {
             await serveur.deleteGrocery(id);
             // je supprime coté client
             article.remove();
+            this.deleteSuccessMessage = document.querySelector(".message.success.delete.grocery");
+            this.deleteSuccessMessage.removeAttribute("hidden");
+            setTimeout(() => {
+                this.deleteSuccessMessage.setAttribute("hidden","");
+            }, 2000);
         } catch (error) {
-            alert(error.message);
+            // alert(error.message);
+            this.deleteFailedMessage = document.querySelector(".message.danger.delete.grocery");
+            this.deleteFailedMessage.removeAttribute("hidden");
+            setTimeout(() => {
+                this.deleteFailedMessage.setAttribute("hidden","");
+            }, 2000);
         }
     },
 
