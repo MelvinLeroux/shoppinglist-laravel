@@ -60,7 +60,8 @@ const category = {
             // je supprime coté client
             article.remove();
         } catch (error) {
-            alert(error.message);
+            this.deleteFailedMessage = document.querySelector(".message.danger.category");
+            this.deleteFailedMessage.removeAttribute("hidden");
         }
     },
 

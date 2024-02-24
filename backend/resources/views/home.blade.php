@@ -28,8 +28,12 @@
     <div class="message success" hidden>
       le nouvel article a été ajouté avec succès
     </div>
-    <div class="message danger" hidden>
+    <div class="message danger grocery" hidden>
       oops, impossible d'ajouter l'article
+    </div>
+
+    <div class="message danger category" hidden>
+      oops, impossible de supprimer la catégorie
     </div>
 
     <ul class="grocerylist">
