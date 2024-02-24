@@ -12,7 +12,7 @@ const form = {
         this.createGroceryContainerElement = document.querySelector(".create-grocery-container");
         this.createGrocerymodalElement = document.querySelector(".modal-dialog-grocery");
         this.createGroceryformElement = document.querySelector(".grocery-create");
-        this.inputcreateGroceryTitleElement = document.querySelector("#grocery-title");
+        this.inputCreateGroceryTitleElement = document.querySelector("#grocery-title");
         /**
          * CreateCategory queryselectors
          */
@@ -21,6 +21,7 @@ const form = {
         this.createCategorymodalElement = document.querySelector(".modal-dialog-category");
         this.createCategoryformElement = document.querySelector(".category-create");
         this.inputcreateCategoryTitleElement = document.querySelector("#category-title");
+        this.listCategoryCreateList = document.querySelector(".categoryList")
 
         /**
          * updateGrocery queryselectors
@@ -93,7 +94,7 @@ const form = {
         // ! 4 IMPORTANT, empêcher l'envoi du form
         event.preventDefault();
         //  5 Récupérer la valeur de l'input
-        const name = this.inputcreateGroceryTitleElement.value;
+        const name = this.inputCreateGroceryTitleElement.value;
         const category_id= this.selectCategoryElement.value;
         //  6 transformer en json la valeur récupéré
         const jsonData = JSON.stringify({ name, category_id });
@@ -108,7 +109,7 @@ const form = {
             //  9 revenir à la page de base
             this.handleClickCreateGroceryVisibility();
             //  10 réinitialiser l'input
-            this.inputcreateGroceryTitleElement.value = "";
+            this.inputCreateGroceryTitleElement.value = "";
         } catch (error) {
             alert("handlegrocery",error.message);
         }
@@ -117,7 +118,7 @@ const form = {
         // ! 4 IMPORTANT, empêcher l'envoi du form
         event.preventDefault();
         //  5 Récupérer la valeur de l'input
-        const name = this.inputcreateGroceryTitleElement.value;
+        const name = this.inputCreateGroceryTitleElement.value;
         //  6 transformer en json la valeur récupéré
         const jsonData = JSON.stringify({ name });
         //  7 envoyer au serveur la donnée
@@ -130,7 +131,7 @@ const form = {
             //  9 revenir à la page de base
             this.handleClickCreateGroceryVisibility();
             //  10 réinitialiser l'input
-            this.inputcreateGroceryTitleElement.value = "";
+            this.inputCreateGroceryTitleElement.value = "";
         } catch (error) {
             alert(error.message);
         }
@@ -150,8 +151,9 @@ const form = {
             const categoryData = await serveur.createCategory(jsonData);
             //  8 changer le dom avec la nouvelle grocery
             const liElement = category.createCategoryElement(categoryData.data);
-            this.createCategoryContainerElement.append(liElement);
+            this.listCategoryCreateList.append(liElement);
             //  9 revenir à la page de base
+            this.loadCategories();
             this.handleClickCreateCategoryVisibility();
             //  10 réinitialiser l'input
         } catch (error) {
@@ -160,7 +162,7 @@ const form = {
     },
     loadCategories: async function () {
         try {
-
+            this.selectCategoryElement.innerHTML = "";
             // je récupère les catégories en bdd
             const categories = await serveur.getCategories();
             //  boucler sur les categories

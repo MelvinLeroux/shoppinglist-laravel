@@ -63,7 +63,6 @@ const serveur = {
     },
     createGrocery: async function (data) {
         try {
-            console.log(data,"avant");
             // fetch fait une requete http, vers l'url en premier argument avec la method fournis en deuxieme argument
             const response = await fetch(`${this.url}/groceries`, {
                 method: "POST",
@@ -72,14 +71,12 @@ const serveur = {
                     "Content-Type": "application/json",
                 },
             });
-            console.log(response,"après");
-            // ! spécifié  si ma réponse n'est pas bonne
+                        // ! spécifié  si ma réponse n'est pas bonne
             // j'ai une 404 et je décide que 404 = erreur
             if (!response.ok) {
                 throw new Error(`Fetch failed : ${response.status}`);
             }
             const grocery = await response.json();
-            console.log(grocery, "avant return");
             // ! si erreur à partir d'ici on execute plus et on va dans le catch
             // * données utilisable car on a bien "parsé les données en json"
             return grocery;
@@ -113,7 +110,6 @@ const serveur = {
             const response = await fetch(`${this.url}/categories/${id}`, {
                 method: "DELETE",
             });
-            console.log(response);
             // ! spécifié  si ma réponse n'est pas bonne
             // j'ai une 404 et je décide que 404 = erreur
             if (!response.ok) {
