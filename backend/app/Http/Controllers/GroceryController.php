@@ -14,7 +14,7 @@ class GroceryController extends Controller
      * This methods displays all the groceries in the database
      */
     {
-    return response()->json(Grocery::all());
+    return response()->json(Grocery::with("category")->get());
     }
 
     public function read (int $id)
@@ -33,7 +33,7 @@ class GroceryController extends Controller
         // Validator to check if the request is ok
         $validator = Validator::make($request->all(), [
             'name' => 'required|max:100',
-            'category' => 'max:100',
+            'category_id' => 'integer',
         ]);
         // if one of the field is not okay return fail
         if ($validator->fails()) {
@@ -43,7 +43,9 @@ class GroceryController extends Controller
         }
         $grocery = new Grocery();
         $grocery->name = $request->name;
+        $grocery->category_id = $request->category_id;
         $grocery->save();
+        $grocery->load('category');
         return response()->json(["data"=>$grocery],201);
     }
 
@@ -76,7 +78,6 @@ class GroceryController extends Controller
         // validator to check the field
         $validator = Validator::make($request->all(), [
             "name" => 'min:1|max:100',
-            "category" => 'max:100'
         ]);
         // if grocery does not exist
         if ($validator->fails()) {

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task manager</title>
+  <meta name="description" content="Un gestionnaire de tâches, pour vous aider au quotidien">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>Task manager</h1>
+  </header>
+
+  <main>
+
+    <div class="create-task-container">
+      <button>nouvelle tâche</button>
+    </div>
+
+    <div class="message success" hidden>
+      la nouvelle tâche a bien été ajoutée
+    </div>
+    <div class="message danger" hidden>
+      oops, impossible de sauvegarder la tâche
+    </div>
+
+    <ul class="tasklist">
+    </ul>
+
+    <div class="modal-dialog">
+      <form class="grocery-create">
+        <h2 class="form-name-grocery">nouvel article</h2>
+        <label for="grocery-name" class="screen-reader-only">titre de l'article'</label>
+        <input name="id" id="grocery-id" type="hidden">
+        <input name="name" id="grocery-name" placeholder="titre de l'article..." type="text" required>
+        <!--  créer le select pour y ajouter les options dynamiquement -->
+        <select name="category" id="category">
+
+        </select>
+        <button>ajouter</button>
+      </form>
+    </div>
+
+
+    <div class="modal-dialog">
+        <form>
+          <h2 class="form-title-category">nouvelle catégorie</h2>
+          <label for="category-title" class="screen-reader-only">titre de la catégorie</label>
+          <input name="id" id="category-id" type="hidden">
+          <input name="title" id="category-title" placeholder="titre de la catégorie..." type="text" required>
+          <!--  créer le select pour y ajouter les options dynamiquement -->
+          <select name="category" id="category">
+
+          </select>
+          <button>ajouter</button>
+        </form>
+      </div>
+  </main>
+
+  <script type="module" src="./js/app.js"></script>
+</body>
+
+</html>

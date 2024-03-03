@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Grocery extends Model
 {
+    protected $fillable = [
+        'name',  // Ajoutez les noms d'attributs que vous souhaitez permettre ici
+    ];
     use HasFactory;
     public function Category(): BelongsTo
     {
