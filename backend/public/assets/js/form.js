@@ -109,6 +109,7 @@ const form = {
             setTimeout(() => {
                 this.createGroceryMessageCreated.setAttribute("hidden","");
             }, 2000);
+
         } catch (error) {
             // alert("handlegrocery",error.message);
             this.createGroceryMessageError = document.querySelector(".message.danger.create.grocery");
@@ -160,6 +161,7 @@ const form = {
         //  5 Récupérer la valeur de l'input
         const name = this.inputcreateCategoryTitleElement.value;
         //  6 transformer en json la valeur récupéré
+        console.log(this.inputcreateCategoryTitleElement.value);
         const jsonData = JSON.stringify({ name });
         //  7 envoyer au serveur la donnée
         //  7.1 trycatch sur await pour capter les erreurs
@@ -177,6 +179,7 @@ const form = {
                 this.createCategoryMessageCreated.setAttribute("hidden","");
             }, 2000);
             //  10 réinitialiser l'input
+            this.inputcreateCategoryTitleElement.value = '';
         } catch (error) {
             this.createCategoryMessageError = document.querySelector(".message.danger.create.category");
             this.createCategoryMessageError.removeAttribute("hidden");
@@ -184,7 +187,6 @@ const form = {
                 this.createGroceryMessageError.setAttribute("hidden","");
             }, 2000);
             // alert(error.message);
-
         }
     },
     loadCategories: async function () {

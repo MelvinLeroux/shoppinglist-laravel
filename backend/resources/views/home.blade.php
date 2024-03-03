@@ -35,7 +35,7 @@
       l'article a été modifié avec succès
     </div>
     <div class="message danger edit grocery" hidden>
-      l'article n'a pas pu être modifié 
+      l'article n'a pas pu être modifié
     </div>
     <div class="message success delete grocery" hidden>
       le nouvel article a été supprimé avec succès
@@ -56,15 +56,13 @@
     </div>
 
     <div class="message danger delete category" hidden>
-      oops, impossible de supprimer la catégorie
+      oops, impossible de supprimer la catégorie, vérifiez bien qu'elle ne soit plus affectée à un article.
     </div>
 
     <ul class="grocerylist">
-        <p>ici</p>
     </ul>
 
     <ul class="categoryList">
-        <p>ici</p>
     </ul>
 
     <div class="modal-dialog-grocery">

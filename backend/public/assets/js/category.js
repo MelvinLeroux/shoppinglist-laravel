@@ -1,4 +1,5 @@
 import serveur from "./serveur.js";
+import form from "./form.js"
 const category = {
     init: async function () {
         // querySelector necessaire à l'app
@@ -64,6 +65,7 @@ const category = {
             setTimeout(() => {
                 this.deleteSuccessMessage.setAttribute("hidden","");
             }, 2000);
+            form.loadCategories();
         } catch (error) {
             this.deleteFailedMessage = document.querySelector(".message.danger.delete.category");
             this.deleteFailedMessage.removeAttribute("hidden");
