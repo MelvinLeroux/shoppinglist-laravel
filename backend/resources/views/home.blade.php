@@ -26,33 +26,33 @@
     </div>
     </div>
     <div class="message success create grocery" hidden>
-      le nouvel article a été ajouté avec succès
+      le nouvel article a été ajouté avec succès.
     </div>
     <div class="message success create category" hidden>
-      la nouvelle catégorie a été ajoutée avec succès
+      la nouvelle catégorie a été ajoutée avec succès.
     </div>
     <div class="message success edit grocery" hidden>
-      l'article a été modifié avec succès
+      l'article a été modifié avec succès.
     </div>
     <div class="message danger edit grocery" hidden>
-      l'article n'a pas pu être modifié
+      l'article n'a pas pu être modifié.
     </div>
     <div class="message success delete grocery" hidden>
-      le nouvel article a été supprimé avec succès
+      le nouvel article a été supprimé avec succès.
     </div>
     <div class="message success delete category" hidden>
-      la nouvelle catégorie a été supprimée avec succès
+      la nouvelle catégorie a été supprimée avec succès.
     </div>
     <div class="message danger create grocery" hidden>
-      oops, impossible d'ajouter l'article
+      oops, impossible d'ajouter l'article, une catégorie à lier est nécessaire.
     </div>
 
     <div class="message danger delete grocery" hidden>
-      oops, impossible de supprimer l'article
+      oops, impossible de supprimer l'article.
     </div>
 
     <div class="message danger create category" hidden>
-      oops, impossible d'ajouter la catégorie
+      oops, impossible d'ajouter la catégorie.
     </div>
 
     <div class="message danger delete category" hidden>

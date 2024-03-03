@@ -96,6 +96,7 @@ const form = {
         //  7.1 trycatch sur await pour capter les erreurs
         try {
             const groceryData = await serveur.createGrocery(jsonData);
+
             //  8 changer le dom avec la nouvelle grocery
 
             const liElement = grocery.createGroceryElement(groceryData.data);

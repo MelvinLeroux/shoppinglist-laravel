@@ -17,15 +17,41 @@ This project uses:
 
 ## Features
 
-Create, delete, or update an item.
-Create, delete a category.
-Display a list of items and categories, if an item is link to a category you can see it.
-Display flash-messages when something is add delete or update.
+- Create, delete, or update an item.
+- Create, delete a category.
+- Display a list of items and categories, if an item is link to a category you can see it.
+- Display flash-messages when something is add delete or update.
 
 ## Project status
 
-![homepage](/public/images/homepage.png)
+![homepage](/backend/public/assets/img/homepage.png)
 
-![add an item](/public/images/resultat.png)
+![homepage with content](/backend/public/assets/img/homepagewithcontent.png)
 
-![remove a category](/public/images/recherche_par_realisateur.png)
+![new article](/backend/public/assets/img/addarticle.png)
+
+### Done
+
+#### Back
+
+- [x] Composer and dependencies install
+- [x] Controller and models creations (Category/Grocery)
+- [x] API Rest
+
+#### Front
+
+- [x] Views
+- [x] Fetch datas from API
+- [x] Javascript forms : creation, edition, delete
+
+
+## TODO
+
+### TECH
+
+- [ ] Refactoring folders structure
+
+### FUNCTIONAL
+
+- [ ] Removing the option in grocery form if no categories created + forbid the display of an item if there's no category
+- [ ] Create the possibility to have several  shopping lists
